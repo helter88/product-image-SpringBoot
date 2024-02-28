@@ -31,7 +31,7 @@ public class ProductService {
                 .price(productDTO.price())
                 .build();
 
-        product = productRepository.save(product);
+//        product = productRepository.save(product);
 
         // Przetwarzanie i zapis obrazów
         for (MultipartFile file : images) {
@@ -41,14 +41,14 @@ public class ProductService {
                     .image(file.getBytes())
                     .build();
 
-            image = imageRepository.save(image);
+//            image = imageRepository.save(image);
 
-            ProductImage productImage = ProductImage.builder()
-                    .product(product)
-                    .image(image)
-                    .build();
-
-            productImageRepository.save(productImage);
+//            ProductImage productImage = ProductImage.builder()
+//                    .product(product)
+//                    .image(image)
+//                    .build();
+//
+//            productImageRepository.save(productImage);
         }
     }
 }
