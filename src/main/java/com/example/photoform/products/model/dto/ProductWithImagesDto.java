@@ -5,9 +5,10 @@ import com.example.photoform.products.model.Image;
 import java.math.BigDecimal;
 import java.util.List;
 
-public record ProductDto(
+public record ProductWithImagesDto(
         String name,
         String description,
-        BigDecimal price
+        BigDecimal price,
+        List<ImageDto> images
 ) {
 }

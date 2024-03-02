@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
@@ -19,6 +20,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
+@Getter
 public class Product {
 
     @Id
@@ -28,6 +30,6 @@ public class Product {
     private String description;
     private BigDecimal price;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<ProductImage> productImages = new HashSet<>();
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    private Set<ProductImage> productImages;
 }

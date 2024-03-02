@@ -2,10 +2,13 @@ package com.example.photoform.products.controller;
 
 import com.example.photoform.products.model.Product;
 import com.example.photoform.products.model.dto.ProductDto;
+import com.example.photoform.products.model.dto.ProductWithImagesDto;
 import com.example.photoform.products.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,13 +35,18 @@ public class ProductController {
         try {
             ProductDto productDTO = objectMapper.readValue(productData, ProductDto.class);
             productService.saveProduct(productDTO, images);
+            return ResponseEntity.ok().body("{\"message\":\"Product added successfully\"}");
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Invalid product data");
+            return ResponseEntity.badRequest().body("{\"error\":\"Invalid product data\"}");
         }
-
-        // Przetwarzanie i zapis obrazów oraz danych produktu
-        // ...
-
-        return ResponseEntity.ok("Product added successfully");
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getProduct(@PathVariable Long id) {
+        try {
+            ProductWithImagesDto productDto = productService.getProductWithImages(id);
+            return ResponseEntity.ok(productDto);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("{\"error\":\"" + e.getMessage() + "\"}");
+        }
     }
 }

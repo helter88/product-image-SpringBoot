@@ -7,12 +7,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @Entity
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
+@Getter
 public class Image {
 
     @Id

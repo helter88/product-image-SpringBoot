@@ -10,6 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.awt.*;
@@ -19,6 +20,7 @@ import java.awt.*;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
+@Getter
 public class ProductImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
